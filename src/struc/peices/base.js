@@ -1,12 +1,13 @@
 const Directions = require('../../util/directions');
 const Teams = require('../../util/teams');
 const Types = require('../../util/types');
+const MoveError = require('../../error/move_error');
 
 /**
  * Represents a peice on the board.
  * @abstract
  */
-class Peice {
+class Peice extends EventEmitter {
 
   /**
    * Creates a peice.
@@ -39,9 +40,9 @@ class Peice {
     Object.defineProperty(this, 'Type', {value: type});
 
     /** The x co-ordinate of the peice. */
-    this.X = this.Type.start.X * this.Team.Mod;
+    this.X = this.Type.start.X * this.Team.mod;
     /** The y co-ordinate of the peice. */
-    this.Y = this.Type.start.Y * this.Team.Mod;
+    this.Y = this.Type.start.Y * this.Team.mod;
   }
 
   /**
@@ -50,8 +51,11 @@ class Peice {
    * @param  {Direction} dir The direction to move the peice.
    */
   Move(dir) {
-    this.X += this.Team.Mod * dir.X;
-    this.Y += this.Team.Mod * dir.Y;
+    this.X += this.Team.mod * dir.X;
+    this.Y += this.Team.mod * dir.Y;
+
+    //emit event
+    this.Board.ActionManager.MoveAction.handle(this);
   }
 
   /**
@@ -64,7 +68,10 @@ class Peice {
 
     let x = (2 * ball.X) - this.X;
     let y = (2 * ball.Y) - this.Y;
-    ball.Kick(x, y);
+
+    console.log(`${this.Team.name} ${this.Type.name} kicked the ball to (${x},${y})`);
+
+    ball.Kick(this, x, y);
   }
 
   /**

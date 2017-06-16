@@ -1,3 +1,7 @@
+
+/**
+ * @namespace Peices
+ */
 module.exports = {
   Ball: require('./peices/ball'),
   Striker: require('./peices/striker'),

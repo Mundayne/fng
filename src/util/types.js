@@ -7,23 +7,32 @@
 var Types = {
   Striker: {
     name: "striker",
-    start: {X:0, Y:-1}
+    start: {x:0, y:-1},
+    img: {'./html/img/str.jpg'}
   },
   LeftMidfield: {
     name: "left_midfield",
-    start: {X:-1, Y:-2}
+    start: {x:-1, y:-2},
+    img: {'./html/img/mid.jpg'}
   },
   RightMidfield: {
     name: "right_midfield",
-    start: {X:1, Y:-2}
+    start: {x:1, y:-2},
+    img: {'./html/img/mid.jpg'}
   },
   Defender: {
     name: "defender",
-    start: {X:0, Y:-3}
+    start: {x:0, y:-3},
+    img: {'./html/img/def.jpg'}
+  },
+  Ball: {
+    name: "ball",
+    start: {x:0, y:0},
+    img: {'./html/img/ball.png'}
   },
   Null: {
     name: "null",
-    start: {X:-4, Y:-4}
+    start: {x:-4, y:-4}
   },
 }
 

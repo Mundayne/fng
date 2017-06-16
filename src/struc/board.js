@@ -1,5 +1,6 @@
 const Peice = require('./peices');
 const Team = require('../util/teams');
+const ActionManager = require('./actions/action_manager');
 
 /**
  * Represents a game board for Fox and Geese Footy.
@@ -35,6 +36,14 @@ class Board {
         Def: new Peice.Defender(this, Team.Blue)
       }
     }});
+
+    /**
+     * Manages events
+     * @name Board#ActionManager
+     * @type {ActionManager}
+     * @readonly
+     */
+    Object.defineProperty(this, 'ActionManager', {value: new ActionManager(this)});
 
     //Shortcut to the board's ball
     this.Ball = this.Peices.Ball;

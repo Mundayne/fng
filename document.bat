@@ -1,0 +1,1 @@
+jsdoc -d ./docs ./src/util ./src/struc ./src/struc/peices
